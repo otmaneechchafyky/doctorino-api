@@ -1,12 +1,14 @@
 databases:
-  - name: postgres
+  - name: doctorinoapi
     ipAllowList: []
     databaseName: doctorinoapi_production
     user: doctorinoapi_production
+    plan: free
 
 services:
   - type: web
-    name: mana
+    name: doctorinoapi
+    plan: free
     env: ruby
     buildCommand: "./render-build.sh"
     startCommand: bundle exec rails s
@@ -17,3 +19,6 @@ services:
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
+  - type: redis
+    name: redis
+    plan: free
