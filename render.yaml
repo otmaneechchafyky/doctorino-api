@@ -1,6 +1,5 @@
 databases:
   - name: doctorinoapi
-    ipAllowList: []
     databaseName: doctorinoapi_production
     user: doctorinoapi_production
     plan: free
