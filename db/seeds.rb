@@ -1,49 +1,68 @@
-require 'faker'
+# db/seeds.rb
 
-# Create Genres
-10.times do
-  Genre.create(name: Faker::Creature::Animal.name)
+# Helper methods to create records
+
+def create_genre(name)
+  Genre.create(name: name)
 end
 
-# Create Specializations
-10.times do
-  Specialization.create(name: Faker::Job.field)
-end
-
-# Create Vets
-10.times do
-  Vet.create(
-    name: Faker::Name.name,
-    vet_photo: Faker::LoremFlickr.image,
-    available_from: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
-    available_to: Faker::Time.between(from: DateTime.now, to: DateTime.now + 1),
-    fees: Faker::Number.decimal(l_digits: 2),
-    bio: Faker::Lorem.sentence,
-    specialization: Specialization.all.sample
+def create_user(username, email, password)
+  User.create(
+    userName: username,
+    email: email,
+    password: password,
+    jti: SecureRandom.uuid
   )
 end
 
-# Create Animals
-10.times do
+def create_animal(name, animal_photo, date_of_birth, weight, escape_attempts, owner, genre)
   Animal.create(
-    name: Faker::Creature::Animal.name,
-    animal_photo: Faker::LoremFlickr.image,
-    date_of_birth: Faker::Date.birthday,
-    weight: Faker::Number.decimal(l_digits: 2),
-    escape_attempts: Faker::Number.between(from: 0, to: 10),
-    owner: User.all.sample,
-    genre: Genre.all.sample
+    name: name,
+    animal_photo: animal_photo,
+    date_of_birth: date_of_birth,
+    weight: weight,
+    escape_attempts: escape_attempts,
+    owner: owner,
+    genre: genre
   )
 end
 
-# Create Appointments
-10.times do
-  Appointment.create(
-    date: Faker::Date.forward(days: 30),
-    time: Faker::Time.forward(days: 30),
-    location: Faker::Address.full_address,
-    duration: Faker::Number.decimal(l_digits: 2),
-    animal: Animal.all.sample,
-    vet: Vet.all.sample
+def create_specialization(name)
+  Specialization.create(name: name)
+end
+
+def create_vet(name, vet_photo, available_from, available_to, fees, bio, specialization)
+  Vet.create(
+    name: name,
+    vet_photo: vet_photo,
+    available_from: available_from,
+    available_to: available_to,
+    fees: fees,
+    bio: bio,
+    specialization: specialization
   )
 end
+
+# Creating genres
+genre1 = create_genre('Mammal')
+genre2 = create_genre('Reptile')
+
+# Creating users
+user1 = create_user('JohnDoe', 'john@example.com', 'password')
+user2 = create_user('JaneSmith', 'jane@example.com', 'password')
+
+# Creating animals
+animal1 = create_animal('Lion', 'lion.jpg', Date.new(2020, 5, 10), 150.5, 0, user1, genre1)
+animal2 = create_animal('Snake', 'snake.jpg', Date.new(2021, 8, 20), 5.2, 2, user2, genre2)
+
+# Creating specializations
+specialization1 = create_specialization('Cardiology')
+specialization2 = create_specialization('Dermatology')
+
+# Creating vets
+vet1 = create_vet('Dr. Smith', 'smith.jpg', Time.parse('09:00'), Time.parse('17:00'), 80.0, 'Experienced vet', specialization1)
+vet2 = create_vet('Dr. Johnson', 'johnson.jpg', Time.parse('10:00'), Time.parse('18:00'), 75.0, 'Passionate about animals', specialization2)
+
+# Additional seed data as needed...
+
+puts 'Seeding completed!'
