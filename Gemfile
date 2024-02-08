@@ -65,3 +65,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rswag-specs'
 end
+
+# Handle uploaded photos
+gem 'carrierwave'
+gem 'mini_magick'

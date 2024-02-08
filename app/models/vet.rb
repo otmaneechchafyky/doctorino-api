@@ -1,6 +1,7 @@
 class Vet < ApplicationRecord
   belongs_to :specialization
   has_many :appointments, dependent: :destroy
+  mount_uploader :vet_photo, PhotoUploader
 
   validates :name, presence: true
   validates :vet_photo, presence: true
