@@ -1,4 +1,5 @@
-class PhotoUploaderUploader < CarrierWave::Uploader::Base
+# Correct the class name to PhotoUploader (remove the extra 'Uploader')
+class PhotoUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
