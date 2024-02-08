@@ -44,25 +44,25 @@ def create_vet(name, vet_photo, available_from, available_to, fees, bio, special
 end
 
 # Creating genres
-genre1 = create_genre('Mammal')
-genre2 = create_genre('Reptile')
+genre1 = create_genre('Cats')
+genre2 = create_genre('Fishes')
+genre3 = create_genre('Dinasors')
+genre4 = create_genre('Birds')
 
 # Creating users
 user1 = create_user('JohnDoe', 'john@example.com', 'password')
 user2 = create_user('JaneSmith', 'jane@example.com', 'password')
 
 # Creating animals
-animal1 = create_animal('Lion', 'lion.jpg', Date.new(2020, 5, 10), 150.5, 0, user1, genre1)
-animal2 = create_animal('Snake', 'snake.jpg', Date.new(2021, 8, 20), 5.2, 2, user2, genre2)
+animal1 = create_animal('Lion', 'https://picsum.photos/200', Date.new(2020, 5, 10), 150.5, 0, user1, genre1)
+animal2 = create_animal('Duphin', 'https://picsum.photos/200', Date.new(2021, 8, 20), 5.2, 2, user2, genre2)
 
 # Creating specializations
 specialization1 = create_specialization('Cardiology')
 specialization2 = create_specialization('Dermatology')
 
 # Creating vets
-vet1 = create_vet('Dr. Smith', 'smith.jpg', Time.parse('09:00'), Time.parse('17:00'), 80.0, 'Experienced vet', specialization1)
-vet2 = create_vet('Dr. Johnson', 'johnson.jpg', Time.parse('10:00'), Time.parse('18:00'), 75.0, 'Passionate about animals', specialization2)
-
-# Additional seed data as needed...
+vet1 = create_vet('Dr. Smith', 'https://picsum.photos/200', Time.parse('09:00'), Time.parse('17:00'), 80.0, 'Experienced vet', specialization1)
+vet2 = create_vet('Dr. Johnson', 'https://picsum.photos/200', Time.parse('10:00'), Time.parse('18:00'), 75.0, 'Passionate about animals', specialization2)
 
 puts 'Seeding completed!'
