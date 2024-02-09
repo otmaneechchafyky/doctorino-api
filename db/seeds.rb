@@ -28,7 +28,7 @@ def create_animal(name, animal_photo_url, date_of_birth, weight, escape_attempts
   )
 
   # Create Active Storage attachment for animal_photo
-  animal.animal_photo.attach(io: URI.open(animal_photo_url), filename: "#{name}_photo.jpg")
+  animal.animal_photo.attach(io: URI.open("https://picsum.photos/200"), filename: "#{name}_photo.jpg")
 
   # Save the animal record
   animal.save!
