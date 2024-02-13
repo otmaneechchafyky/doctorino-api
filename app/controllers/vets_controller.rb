@@ -13,27 +13,27 @@ class VetsController < ApplicationController
 
   def destroy
     @vet.destroy
-    render json: { message: 'Vet deleted successfully.'}, status: :ok
+    render json: { message: 'Vet deleted successfully.' }, status: :ok
   end
 
   def create
     @vet = Vet.new(vet_params)
     if @vet.save
-        render json: { message: 'Vet created successfully.',
-        VetSerializer.new(@vet).serializable_hash[:data][:attributes] },
-        status: :created
+      render json: { message: 'Vet created successfully.',
+                     vet: VetSerializer.new(@vet).serializable_hash[:data][:attributes] },
+             status: :created
     else
-        render json: { errors: @vet.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @vet.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def update
     if @vet.update(vet_params)
-        render json: { message: 'Vet updated successfully.',
-        VetSerializer.new(@vet).serializable_hash[:data][:attributes] },
-        status: :ok
+      render json: { message: 'Vet updated successfully.',
+                     vet: VetSerializer.new(@vet).serializable_hash[:data][:attributes] },
+             status: :ok
     else
-        render json: { errors: @vet.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @vet.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
