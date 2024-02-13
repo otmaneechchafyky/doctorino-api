@@ -3,7 +3,7 @@ class CurrentUserController < ApplicationController
 
   def show
     if current_user
-      render json: { data: UserSerializer.new(current_user).serializable_hash[:data][:attributes] }, status: :ok
+      render json: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
     else
       render json: { error: 'User not found' }, status: :not_found
     end
