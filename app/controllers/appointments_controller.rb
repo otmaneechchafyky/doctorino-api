@@ -2,33 +2,18 @@ class AppointmentsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_appointment, only: %i[show destroy update]
     def index
-        @appointments = []
         @appointments_list = Appointment.all
-        @appointments_list.each do |appointment|
-          @appointments << {
-            data: AppointmentSerializer.new(appointment).serializable_hash[:data][:attributes],
-            animal: AnimalSerializer.new(appointment.animal).serializable_hash[:data][:attributes],
-            vet: VetSerializer.new(appointment.vet).serializable_hash[:data][:attributes]
-          }
-        end
-        render json: @appointments
+        render json: @appointments_list, each_serializer: AppointmentSerializer
     end
 
     def show
-        render json: {
-            data: AppointmentSerializer.new(@appointment).serializable_hash[:data][:attributes],
-            animal: AnimalSerializer.new(@appointment.animal).serializable_hash[:data][:attributes],
-            vet: VetSerializer.new(@appointment.vet).serializable_hash[:data][:attributes]
-        }
+        render json: AppointmentSerializer.new(@appointment).serializable_hash[:data][:attributes]
     end
 
     def create
         @appointment = Appointment.new(appointment_params)
         if @appointment.save
-            render json: { message: 'Appointment created successfully.',
-            animal: AnimalSerializer.new(@appointment.animal).serializable_hash[:data][:attributes],
-            vet: VetSerializer.new(@appointment.vet).serializable_hash[:data][:attributes] },
-            status: :created
+            render json: {message: 'Appointment created successfully.'}, status: ok
         else
             render json: { errors: @appointment.errors.full_messages }, status: :unprocessable_entity
         end
