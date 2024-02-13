@@ -4,22 +4,11 @@ class AnimalsController < ApplicationController
 
     def index # Get animals list 
         @animals_list = Animal.all
-        @animals = []
-        @animals_list.each do |animal|
-            @animals << {
-                data: AnimalSerializer.new(animal).serializable_hash[:data][:attributes],
-                animal_owner: UserSerializer.new(animal.owner).serializable_hash[:data][:attributes]
-            }
-        end
-        render json: @animals
-    end
+        render json: @animals_list, each_serializer: AnimalSerializer
+    end        
 
     def show # animals/:id
-        render json: {
-            data: AnimalSerializer.new(@animal).serializable_hash[:data][:attributes],
-            animal_owner: UserSerializer.new(@animal.owner).serializable_hash[:data][:attributes],
-            animal_genre: GenreSerializer.new(@animal.genre).serializable_hash[:data][:attributes]
-        }
+        render json: AnimalSerializer.new(@animal).serializable_hash[:data][:attributes]
     end
 
     def destroy # Delete animals/:id
@@ -30,23 +19,25 @@ class AnimalsController < ApplicationController
     def create
         @animal = Animal.new(animal_params)
         if @animal.save
-            render json: { message: 'Animal created successfully.',
-            animal: AnimalSerializer.new(@animal).serializable_hash[:data][:attributes] },
-            status: :created
+          render json: {
+            message: 'Animal created successfully.',
+            animal: AnimalSerializer.new(@animal).serializable_hash[:data][:attributes]
+          }, status: :created
         else
-            render json: { errors: @animal.errors.full_messages }, status: :unprocessable_entity
+          render json: { errors: @animal.errors.full_messages }, status: :unprocessable_entity
         end
     end
-
+      
     def update
         if @animal.update(animal_params)
-            render json: { message: 'Animal updated successfully.',
-            animal: AnimalSerializer.new(@animal).serializable_hash[:data][:attributes] },
-            status: :ok
+          render json: {
+            message: 'Animal updated successfully.',
+            animal: AnimalSerializer.new(@animal).serializable_hash[:data][:attributes]
+          }, status: :ok
         else
-            render json: { errors: @animal.errors.full_messages }, status: :unprocessable_entity
+          render json: { errors: @animal.errors.full_messages }, status: :unprocessable_entity
         end
-    end
+    end      
 
     private
 
