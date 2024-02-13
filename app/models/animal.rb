@@ -2,7 +2,6 @@ class Animal < ApplicationRecord
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
   belongs_to :genre
   has_many :appointments, dependent: :destroy
-  has_one_attached :animal_photo
 
   validates :name, presence: true
   validates :animal_photo, presence: true
