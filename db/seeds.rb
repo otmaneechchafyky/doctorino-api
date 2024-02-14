@@ -8,29 +8,6 @@ def create_genre(name)
   Genre.create(name: name)
 end
 
-def create_user(username, email, password)
-  user = User.create(
-    userName: username,
-    email: email,
-    password: password,
-    jti: SecureRandom.uuid
-  )
-  puts "Created user: #{user.inspect}"
-  user
-end
-
-def create_animal(name, animal_photo, date_of_birth, weight, escape_attempts, owner, genre)
-  Animal.create(
-    name: name,
-    animal_photo: animal_photo,
-    date_of_birth: date_of_birth,
-    weight: weight,
-    escape_attempts: escape_attempts,
-    owner_id: owner.id,
-    genre: genre
-  )
-end
-
 def create_specialization(name)
   Specialization.create(name: name)
 end
@@ -57,10 +34,6 @@ genre2 = create_genre('Insect')
 genre3 = create_genre('Arachnid')
 genre4 = create_genre('Domestic Animal')
 genre1 = create_genre('Marine Animal')
-
-# Creating users
-user1 = create_user('AliceDoe', 'alice@example.com', 'password')
-user2 = create_user('BobSmith', 'bob@example.com', 'password')
 
 # Creating specializations
 specialization1 = create_specialization('Cardiology')
