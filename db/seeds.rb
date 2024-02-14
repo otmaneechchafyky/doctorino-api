@@ -2,8 +2,6 @@ require 'open-uri'
 
 # Helper methods to create records
 
-Genre.destroy_all
-
 def create_genre(name)
   Genre.create(name: name)
 end
