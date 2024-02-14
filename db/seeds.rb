@@ -22,17 +22,6 @@ def create_vet(name, vet_photo, available_from, available_to, fees, bio, special
   )
 end
 
-# Creating genres
-genre1 = create_genre('Mammal')
-genre2 = create_genre('Fish')
-genre3 = create_genre('Bird')
-genre4 = create_genre('Reptile')
-genre5 = create_genre('Amphibian')
-genre6 = create_genre('Insect')
-genre7 = create_genre('Arachnid')
-genre8 = create_genre('Domestic Animal')
-genre9 = create_genre('Marine Animal')
-
 # Creating specializations
 specialization1 = create_specialization('Cardiology')
 specialization2 = create_specialization('Dermatology')
@@ -48,5 +37,16 @@ end
 
 # Destroy genres
 Genre.destroy_all
+
+# Creating genres
+genre1 = create_genre('Mammal')
+genre2 = create_genre('Fish')
+genre3 = create_genre('Bird')
+genre4 = create_genre('Reptile')
+genre5 = create_genre('Amphibian')
+genre6 = create_genre('Insect')
+genre7 = create_genre('Arachnid')
+genre8 = create_genre('Domestic Animal')
+genre9 = create_genre('Marine Animal')
 
 puts 'Seeding completed!'
