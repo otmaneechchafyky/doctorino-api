@@ -14,7 +14,7 @@
 <h1 align="center">Doctorino</h1>
 
 
-<img width="374" alt="erd_diagram" src="./app/assets/doctorino.png">
+<img width="374" alt="erd_diagram" src="./app/assets/doc.png">
 
 
 </div>
