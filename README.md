@@ -111,7 +111,7 @@ Clone this repository to your desired folder:
 
 ```sh
   cd my-folder
-  git clone https://github.com/otmaneechchafyky/doctorino-front-end
+  git clone https://github.com/otmaneechchafyky/doctorino-api
 ```
 
 ### Install
