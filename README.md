@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <img src="./app/assets/images/pf-logo.png" alt="logo" width="140"  height="auto" />
+  <img src="./app/assets/pf-logo.png" alt="logo" width="140"  height="auto" />
   <br/>
 
   <h1><b>Welcome to my project 😃</b></h1>
@@ -14,7 +14,7 @@
 <h1 align="center">Doctorino</h1>
 
 
-<img width="374" alt="erd_diagram" src="./app/assets/images/budg.png">
+<img width="374" alt="erd_diagram" src="./app/assets/doctorino.png">
 
 
 </div>
